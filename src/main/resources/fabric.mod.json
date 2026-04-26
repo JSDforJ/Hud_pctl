@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "hud_pctl",
+  "version": "${version}",
+  "name": "SpotiHUD Playerctl",
+  "description": "Playerctl variables for Hudder; works with Spotify, YT, browsers, and more.",
+  "authors": ["JSDfJ"],
+  "contact": {
+    "sources": "https://github.com/JSDfJ/Hud_pctl",
+    "issues": "https://github.com/JSDfJ/Hud_pctl/issues",
+    "homepage": "https://github.com/JSDfJ/Hud_pctl",
+    "email": "jsdfj@hypejet.org"
+  },
+  "license": "LGPL-3.0",
+  "icon": "assets/hud_pctl/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dk.jsdfj.hud_pctl.client.Hud_pctlClient"
+    ],
+    "main": [
+      "dk.jsdfj.hud_pctl.Hud_pctl"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-language-kotlin": ">=${kotlin_loader_version}",
+    "fabric-api": "*",
+    "minecraft": ">=${minecraft_version}",
+    "hudder": ">=10.0.0"
+  }
+}
