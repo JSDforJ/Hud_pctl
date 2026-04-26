@@ -3,7 +3,7 @@
   "id": "hud_pctl",
   "version": "${version}",
   "name": "SpotiHUD Playerctl",
-  "description": "Playerctl variables for Hudder; works with Spotify, YT, browsers, and more.",
+  "description": "Playerctl variables for Hudder: No setup required! Works with Spotify, YT, browsers, and more.",
   "authors": ["JSDfJ"],
   "contact": {
     "sources": "https://github.com/JSDfJ/Hud_pctl",
@@ -21,6 +21,17 @@
     "main": [
       "dk.jsdfj.hud_pctl.Hud_pctl"
     ]
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.patreon": "https://patreon.com/JSDfJ?utm_medium=modmenu&utm_source=join_link&utm_campaign=creatorshare_creator",
+        "modmenu.buymeacoffee": "https://buymeacoffee.com/jsdfj",
+        "modmenu.modrinth": "https://modrinth.com/project/spotihud-playerctl",
+        "modmenu.github_releases": "https://github.com/JSDforJ/Hud_pctl/releases"
+      },
+      "update_checker": true
+    }
   },
   "depends": {
     "fabricloader": ">=${loader_version}",
