@@ -4,7 +4,7 @@ Playerctl variables for Hudder: No setup required! Works with Spotify, YT, brows
 ### Requirements
 - [Hudder](https://modrinth.com/mod/hudder)
 - [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin)
-- [Playerctl](https://github.com/altdesktop/playerctl#Installing)
+- [Playerctl](https://pkgs.org/search/?q=playerctl)
 
 ### Variables
 - ``pctl_player``, string, eg. spotify, browser, youtube, etc.
