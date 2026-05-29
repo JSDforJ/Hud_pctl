@@ -20,3 +20,7 @@ Playerctl variables for Hudder: No setup required! Works with Spotify, YT, brows
 - ``pctl_duration_raw``, number, in seconds
 ##### All strings return N/A on error
 ##### All numbers return -1 on error
+
+### Roadmap
+- Windows support
+- [CustomHud](https://modrinth.com/mod/customhud) support
