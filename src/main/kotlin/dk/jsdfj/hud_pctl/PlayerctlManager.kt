@@ -48,14 +48,6 @@ object PlayerctlManager {
     var volume = -1
         private set
 
-    @Volatile
-    var shuffle = false
-        private set
-
-    @Volatile
-    var loop = "N/A"
-        private set
-
     private val service = Executors.newSingleThreadExecutor {
         Thread(it, "PlayerctlManager").apply {
             isDaemon = true
@@ -74,7 +66,7 @@ object PlayerctlManager {
                     "playerctl",
                     "metadata",
                     "--format",
-                    "{{ title }}\t{{ artist }}\t{{ album }}\t{{ status }}\t{{ position }}\t{{ mpris:length }}\t{{ playerName }}\t{{ volume }}\t{{ shuffle }}\t{{ loop }}",
+                    "{{ title }}\t{{ artist }}\t{{ album }}\t{{ status }}\t{{ position }}\t{{ mpris:length }}\t{{ playerName }}\t{{ volume }}",
                     "--follow"
                 )
                 .redirectErrorStream(true)
@@ -82,7 +74,7 @@ object PlayerctlManager {
 
             process.inputStream.bufferedReader().useLines { lines ->
                 lines.forEach { line ->
-                    val parts = line.split("\t", limit = 10)
+                    val parts = line.split("\t", limit = 8)
 
                     title = parts.getOrNull(0).orEmpty().ifBlank { "N/A" }
                     artist = parts.getOrNull(1).orEmpty().ifBlank { "N/A" }
@@ -92,8 +84,6 @@ object PlayerctlManager {
                     durationRaw = (parts.getOrNull(5).orEmpty().ifBlank { "nan" }.toIntOrNull()?.div(1000000) ?: -1)
                     playerName = parts.getOrNull(6).orEmpty().ifBlank { "N/A" }
                     volumeRaw = parts.getOrNull(7).orEmpty().ifBlank { "-1" }.toFloatOrNull() ?: -1F
-                    shuffle = parts.getOrNull(8).toBoolean()
-                    loop = parts.getOrNull(9).orEmpty().ifBlank { "N/A" }
 
                     volume = if (volumeRaw == -1F) -1 else (volumeRaw * 100).toInt()
                     position = if (positionRaw == -1) "N/A" else "${positionRaw / 60}:${if(positionRaw % 60 < 10) "0" + positionRaw % 60 else positionRaw % 60}"
