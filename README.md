@@ -18,6 +18,8 @@ Playerctl variables for Hudder: No setup required! Works with Spotify, YT, brows
 - ``pctl_volume_raw``, number, formatted as between ``0`` and ``1``
 - ``pctl_position_raw``, number, in seconds
 - ``pctl_duration_raw``, number, in seconds
+- ``pctl_shuffle``, boolean
+- ``pctl_loop``, string, either "Playlist", "Track", or "None"
 ##### All strings return N/A on error
 ##### All numbers return -1 on error
 

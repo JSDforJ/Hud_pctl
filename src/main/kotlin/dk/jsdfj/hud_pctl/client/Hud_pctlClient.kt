@@ -66,6 +66,16 @@ class Hud_pctlClient : ClientModInitializer {
             VariableTypes.NUMBER,
             "pctl_duration_raw"
         )
+        DataVariableRegistry.registerVariable(
+            DataVariable { _: String? -> PlayerctlManager.shuffle },
+            VariableTypes.BOOLEAN,
+            "pctl_shuffle"
+        )
+        DataVariableRegistry.registerVariable(
+            DataVariable { _: String? -> PlayerctlManager.loop },
+            VariableTypes.STRING,
+            "pctl_loop"
+        )
 
         LOGGER.info("Initialized Hud_pctl")
     }
