@@ -7,7 +7,7 @@ Playerctl variables for Hudder: No setup required! Works with Spotify, YT, brows
 - [Playerctl](https://pkgs.org/search/?q=playerctl)
 
 ### Variables
-- ``pctl_player``, string, eg. spotify, browser, youtube, etc.
+- ``pctl_player``, string, e.g. spotify, browser, YouTube, etc.
 - ``pctl_title``, string
 - ``pctl_artist``, string
 - ``pctl_album``, string
