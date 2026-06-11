@@ -7,6 +7,8 @@
 # Gradle build folder
 build
 
+.kotlin
+
 # IntelliJ
 out/
 .idea
