@@ -1,0 +1,2 @@
+{pctl_artist} - {pctl_album} - {pctl_title}
+{pctl_status} {pctl_player} {pctl_position}/{pctl_duration} - {pctl_volume}\%

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory
 class Hud_pctl : ModInitializer {
     companion object {
         const val MOD_ID = "hud_pctl"
+        const val ASSETS: String = "/assets/hud_pctl/"
         val LOGGER: Logger = LoggerFactory.getLogger(MOD_ID)
     }
 
