@@ -1,17 +1,14 @@
 package dk.jsdfj.hud_pctl.client
 
 import dev.ngspace.hudder.Hudder
-import dev.ngspace.hudder.api.variableregistry.DataVariable
 import dev.ngspace.hudder.api.variableregistry.DataVariableRegistry
-import dev.ngspace.hudder.api.variableregistry.VariableTypes
 import dev.ngspace.hudder.utils.HudFileUtils
 import dk.jsdfj.hud_pctl.Hud_pctl
 import dk.jsdfj.hud_pctl.Hud_pctl.Companion.LOGGER
 import dk.jsdfj.hud_pctl.PlayerctlManager
 import net.fabricmc.api.ClientModInitializer
-import org.apache.commons.io.FileUtils
-import java.io.File
 import java.io.IOException
+import java.nio.file.Files
 
 
 class Hud_pctlClient : ClientModInitializer {
@@ -19,11 +16,11 @@ class Hud_pctlClient : ClientModInitializer {
     override fun onInitializeClient() {
         createVars()
 
-        val dest = File(HudFileUtils.FOLDER, "media.hud")
-        if (!dest.exists()) {
+        val dest = HudFileUtils.FOLDER.resolve("media.hud")
+        if (!Files.exists(dest)) {
             try {
-                FileUtils.copyURLToFile(
-                    Hud_pctlClient::class.java.getResource(Hud_pctl.ASSETS + "huds/" + "media.hud"),
+                Files.copy(
+                    Hud_pctlClient::class.java.getResourceAsStream(Hud_pctl.ASSETS + "huds/media.hud")!!,
                     dest
                 )
             } catch (e: IOException) {
@@ -36,69 +33,56 @@ class Hud_pctlClient : ClientModInitializer {
     }
 
     fun createVars() {
-        DataVariableRegistry.registerVariable(
-            DataVariable { _: String? -> PlayerctlManager.playerName },
-            VariableTypes.STRING,
+        DataVariableRegistry.registerStringVariable(
+            { _: String? -> PlayerctlManager.playerName },
             "pctl_player"
         )
-        DataVariableRegistry.registerVariable(
-            DataVariable { _: String? -> PlayerctlManager.title },
-            VariableTypes.STRING,
+        DataVariableRegistry.registerStringVariable(
+            { _: String? -> PlayerctlManager.title },
             "pctl_title"
         )
-        DataVariableRegistry.registerVariable(
-            DataVariable { _: String? -> PlayerctlManager.artist },
-            VariableTypes.STRING,
+        DataVariableRegistry.registerStringVariable(
+            { _: String? -> PlayerctlManager.artist },
             "pctl_artist"
         )
-        DataVariableRegistry.registerVariable(
-            DataVariable { _: String? -> PlayerctlManager.album },
-            VariableTypes.STRING,
+        DataVariableRegistry.registerStringVariable(
+            { _: String? -> PlayerctlManager.album },
             "pctl_album"
         )
-        DataVariableRegistry.registerVariable(
-            DataVariable { _: String? -> PlayerctlManager.status },
-            VariableTypes.STRING,
+        DataVariableRegistry.registerStringVariable(
+            { _: String? -> PlayerctlManager.status },
             "pctl_status"
         )
-        DataVariableRegistry.registerVariable(
-            DataVariable { _: String? -> PlayerctlManager.position },
-            VariableTypes.STRING,
+        DataVariableRegistry.registerStringVariable(
+            { _: String? -> PlayerctlManager.position },
             "pctl_position"
         )
-        DataVariableRegistry.registerVariable(
-            DataVariable { _: String? -> PlayerctlManager.duration },
-            VariableTypes.STRING,
+        DataVariableRegistry.registerStringVariable(
+            { _: String? -> PlayerctlManager.duration },
             "pctl_duration"
         )
-        DataVariableRegistry.registerVariable(
-            DataVariable { _: String? -> PlayerctlManager.volume },
-            VariableTypes.NUMBER,
+        DataVariableRegistry.registerNumberVariable(
+            { _: String? -> PlayerctlManager.volume },
             "pctl_volume"
         )
-        DataVariableRegistry.registerVariable(
-            DataVariable { _: String? -> PlayerctlManager.volumeRaw },
-            VariableTypes.NUMBER,
+        DataVariableRegistry.registerNumberVariable(
+            { _: String? -> PlayerctlManager.volumeRaw },
             "pctl_volume_raw"
         )
-        DataVariableRegistry.registerVariable(
-            DataVariable { _: String? -> PlayerctlManager.positionRaw },
-            VariableTypes.NUMBER,
+        DataVariableRegistry.registerNumberVariable(
+            { _: String? -> PlayerctlManager.positionRaw },
             "pctl_position_raw"
         )
-        DataVariableRegistry.registerVariable(
-            DataVariable { _: String? -> PlayerctlManager.durationRaw },
-            VariableTypes.NUMBER,
+        DataVariableRegistry.registerNumberVariable(
+            { _: String? -> PlayerctlManager.durationRaw },
             "pctl_duration_raw"
         )
-        DataVariableRegistry.registerVariable(
-            DataVariable { _: String? -> PlayerctlManager.shuffle },
-            VariableTypes.BOOLEAN,
+        DataVariableRegistry.registerBooleanVariable(
+            { _: String? -> PlayerctlManager.shuffle },
             "pctl_shuffle"
         )
-        DataVariableRegistry.registerVariable(
-            DataVariable { _: String? -> PlayerctlManager.loop },
-            VariableTypes.STRING,
+        DataVariableRegistry.registerStringVariable(
+            { _: String? -> PlayerctlManager.loop },
             "pctl_loop"
         )
     }
