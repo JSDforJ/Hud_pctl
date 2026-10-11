@@ -5,6 +5,7 @@ import dev.ngspace.hudder.api.variableregistry.DataVariableRegistry
 import dev.ngspace.hudder.utils.HudFileUtils
 import dk.jsdfj.hud_pctl.Hud_pctl
 import dk.jsdfj.hud_pctl.Hud_pctl.Companion.LOGGER
+import dk.jsdfj.hud_pctl.PctlCommandManager
 import dk.jsdfj.hud_pctl.PlayerctlManager
 import net.fabricmc.api.ClientModInitializer
 import java.io.IOException
@@ -15,6 +16,7 @@ class Hud_pctlClient : ClientModInitializer {
 
     override fun onInitializeClient() {
         createVars()
+        PctlCommandManager.createCommands()
 
         val dest = HudFileUtils.FOLDER.resolve("media.hud")
         if (!Files.exists(dest)) {
