@@ -96,8 +96,10 @@ object PlayerctlManager {
                     loop = parts.getOrNull(9).orEmpty().ifBlank { "N/A" }
 
                     volume = if (volumeRaw == -1F) -1 else (volumeRaw * 100).toInt()
-                    position = if (positionRaw == -1) "N/A" else "${positionRaw / 60}:${if(positionRaw % 60 < 10) "0" + positionRaw % 60 else positionRaw % 60}"
-                    duration = if (durationRaw == -1) "N/A" else "${durationRaw / 60}:${if(durationRaw % 60 < 10) "0" + durationRaw % 60 else durationRaw % 60}"
+                    position =
+                        if (positionRaw == -1) "N/A" else "${positionRaw / 60}:${if (positionRaw % 60 < 10) "0" + positionRaw % 60 else positionRaw % 60}"
+                    duration =
+                        if (durationRaw == -1) "N/A" else "${durationRaw / 60}:${if (durationRaw % 60 < 10) "0" + durationRaw % 60 else durationRaw % 60}"
                 }
             }
         } catch (e: Exception) {

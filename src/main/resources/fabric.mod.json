@@ -4,7 +4,9 @@
   "version": "${version}",
   "name": "SpotiHUD Playerctl",
   "description": "Playerctl variables for Hudder: No setup required! Works with Spotify, YT, browsers, and more.",
-  "authors": ["JSDfJ"],
+  "authors": [
+    "JSDfJ"
+  ],
   "contact": {
     "sources": "https://codeberg.org/JSDfJ/Hud_pctl",
     "issues": "https://codeberg.org/JSDfJ/Hud_pctl/issues",
