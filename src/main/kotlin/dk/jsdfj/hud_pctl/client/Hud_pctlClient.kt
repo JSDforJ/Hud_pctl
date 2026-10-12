@@ -112,6 +112,7 @@ class Hud_pctlClient : ClientModInitializer {
 
         moveHud("media.hud")
         moveHud("media_complete.hud")
+        moveHud("media.js")
 
         ClientTickEvents.END_CLIENT_TICK.register({ client ->
             if (client.player == null) return@register
