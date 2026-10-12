@@ -57,6 +57,18 @@ object PlayerctlManager {
     var loop: LoopAction? = null
         private set
 
+    @Volatile
+    var output = "N/A"
+        private set
+
+    val input = arrayOf(
+        "playerctl",
+        "metadata",
+        "--format",
+        "{{ title }}\t{{ artist }}\t{{ album }}\t{{ status }}\t{{ position }}\t{{ mpris:length }}\t{{ playerName }}\t{{ volume }}\t{{ shuffle }}\t{{ loop }}",
+        "--follow"
+    )
+
     private val service = Executors.newSingleThreadExecutor {
         Thread(it, "PlayerctlManager").apply {
             isDaemon = true
@@ -72,17 +84,14 @@ object PlayerctlManager {
         try {
             val process = ProcessBuilder()
                 .command(
-                    "playerctl",
-                    "metadata",
-                    "--format",
-                    "{{ title }}\t{{ artist }}\t{{ album }}\t{{ status }}\t{{ position }}\t{{ mpris:length }}\t{{ playerName }}\t{{ volume }}\t{{ shuffle }}\t{{ loop }}",
-                    "--follow"
+                    *input
                 )
                 .redirectErrorStream(true)
                 .start()
 
             process.inputStream.bufferedReader().useLines { lines ->
                 lines.forEach { line ->
+                    output = line
                     val parts = line.split("\t", limit = 10)
 
                     title = parts.getOrNull(0).orEmpty().ifBlank { "N/A" }

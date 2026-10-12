@@ -221,5 +221,13 @@ class Hud_pctlClient : ClientModInitializer {
             },
             "pctl_loop"
         )
+        DataVariableRegistry.registerStringVariable(
+            { _: String? -> PlayerctlManager.input.joinToString(" ") },
+            "pctl_debug_input"
+        )
+        DataVariableRegistry.registerStringVariable(
+            { _: String? -> PlayerctlManager.output },
+            "pctl_debug_output"
+        )
     }
 }
