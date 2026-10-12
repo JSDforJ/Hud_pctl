@@ -1,0 +1,13 @@
+{
+  "key.category.hud_pctl.media_controls": "Media Controls",
+  "key.hud_pctl.play": "Play",
+  "key.hud_pctl.stop": "Stop",
+  "key.hud_pctl.pause": "Pause",
+  "key.hud_pctl.toggle": "Toggle Play/Pause",
+  "key.hud_pctl.next": "Next Track",
+  "key.hud_pctl.previous": "Previous Track",
+  "key.hud_pctl.shuffle": "Toggle Shuffle",
+  "key.hud_pctl.loop": "Cycle Loop",
+  "key.hud_pctl.forward": "Forward",
+  "key.hud_pctl.backward": "Backward"
+}

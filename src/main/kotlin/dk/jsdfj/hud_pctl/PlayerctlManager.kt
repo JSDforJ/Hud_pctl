@@ -1,6 +1,7 @@
 package dk.jsdfj.hud_pctl
 
 import dk.jsdfj.hud_pctl.Hud_pctl.Companion.LOGGER
+import dk.jsdfj.hud_pctl.commands.LoopAction
 import java.util.concurrent.Executors
 
 object PlayerctlManager {
@@ -53,7 +54,7 @@ object PlayerctlManager {
         private set
 
     @Volatile
-    var loop = "N/A"
+    var loop: LoopAction? = null
         private set
 
     private val service = Executors.newSingleThreadExecutor {
@@ -93,7 +94,7 @@ object PlayerctlManager {
                     playerName = parts.getOrNull(6).orEmpty().ifBlank { "N/A" }
                     volumeRaw = parts.getOrNull(7).orEmpty().ifBlank { "-1" }.toFloatOrNull() ?: -1F
                     shuffle = parts.getOrNull(8).toBoolean()
-                    loop = parts.getOrNull(9).orEmpty().ifBlank { "N/A" }
+                    loop = parts.getOrNull(9)?.let { LoopAction.valueOf(it.uppercase()) }
 
                     volume = if (volumeRaw == -1F) -1 else (volumeRaw * 100).toInt()
                     position =

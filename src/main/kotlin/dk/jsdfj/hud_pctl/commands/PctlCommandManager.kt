@@ -14,152 +14,104 @@ object PctlCommandManager {
         ClientCommandRegistrationCallback.EVENT.register(ClientCommandRegistrationCallback { dispatcher: CommandDispatcher<FabricClientCommandSource>, _: CommandBuildContext? ->
             dispatcher.register(
                 ClientCommands.literal("playerctl").then(ClientCommands.literal("stop").executes {
-                    try {
-                        ProcessBuilder()
-                            .command("playerctl", "stop")
-                            .redirectErrorStream(true)
-                            .start()
-                    } catch (e: Exception) {
-                        LOGGER.error("Failed to play media", e)
-                    }
+                    stop()
                     1
                 }).then(ClientCommands.literal("toggle").executes {
-                    try {
-                        ProcessBuilder()
-                            .command("playerctl", "play-pause")
-                            .redirectErrorStream(true)
-                            .start()
-                    } catch (e: Exception) {
-                        LOGGER.error("Failed to play media", e)
-                    }
+                    toggle()
                     1
                 }).then(ClientCommands.literal("next").executes {
-                    try {
-                        ProcessBuilder()
-                            .command("playerctl", "next")
-                            .redirectErrorStream(true)
-                            .start()
-                    } catch (e: Exception) {
-                        LOGGER.error("Failed to play media", e)
-                    }
+                    next()
                     1
                 }).then(ClientCommands.literal("previous").executes {
-                    try {
-                        ProcessBuilder()
-                            .command("playerctl", "previous")
-                            .redirectErrorStream(true)
-                            .start()
-                    } catch (e: Exception) {
-                        LOGGER.error("Failed to play media", e)
-                    }
+                    previous()
                     1
                 }).then(ClientCommands.literal("pause").executes {
-                    try {
-                        ProcessBuilder()
-                            .command("playerctl", "pause")
-                            .redirectErrorStream(true)
-                            .start()
-                    } catch (e: Exception) {
-                        LOGGER.error("Failed to play media", e)
-                    }
+                    pause()
                     1
                 }).then(ClientCommands.literal("play").executes {
-                    try {
-                        ProcessBuilder()
-                            .command("playerctl", "play")
-                            .redirectErrorStream(true)
-                            .start()
-                    } catch (e: Exception) {
-                        LOGGER.error("Failed to play media", e)
-                    }
+                    play()
                     1
                 }).then(ClientCommands.literal("shuffle").executes {
-                    try {
-                        ProcessBuilder()
-                            .command("playerctl", "shuffle", "toggle")
-                            .redirectErrorStream(true)
-                            .start()
-                    } catch (e: Exception) {
-                        LOGGER.error("Failed to play media", e)
-                    }
+                    shuffle()
                     1
                 }.then(ClientCommands.argument("action", BoolArgumentType.bool()).executes {
-                    try {
-                        ProcessBuilder()
-                            .command(
-                                "playerctl",
-                                "shuffle",
-                                if (BoolArgumentType.getBool(it, "action")) "on" else "off"
-                            )
-                            .redirectErrorStream(true)
-                            .start()
-                    } catch (e: Exception) {
-                        LOGGER.error("Failed to play media", e)
-                    }
+                    shuffle(BoolArgumentType.getBool(it, "action"))
                     1
                 })).then(
                     ClientCommands.literal("loop")
                         .then(ClientCommands.argument("action", LoopArgumentType.loopAction()).executes {
-                            try {
-                                ProcessBuilder()
-                                    .command("playerctl", "loop", LoopArgumentType.getLoopAction(it, "action").name)
-                                    .redirectErrorStream(true)
-                                    .start()
-                            } catch (e: Exception) {
-                                LOGGER.error("Failed to play media", e)
-                            }
+                            loop(LoopArgumentType.getLoopAction(it, "action"))
                             1
                         })
                 ).then(ClientCommands.literal("forward").executes {
-                    try {
-                        ProcessBuilder()
-                            .command("playerctl", "position", "5+")
-                            .redirectErrorStream(true)
-                            .start()
-                    } catch (e: Exception) {
-                        LOGGER.error("Failed to play media", e)
-                    }
+                    forward()
                     1
                 }.then(ClientCommands.argument("amount", IntegerArgumentType.integer(0, Integer.MAX_VALUE)).executes {
-                    try {
-                        ProcessBuilder()
-                            .command(
-                                "playerctl",
-                                "position",
-                                IntegerArgumentType.getInteger(it, "action").toString() + "+"
-                            )
-                            .redirectErrorStream(true)
-                            .start()
-                    } catch (e: Exception) {
-                        LOGGER.error("Failed to play media", e)
-                    }
+                    forward(IntegerArgumentType.getInteger(it, "amount"))
                     1
                 })).then(ClientCommands.literal("backward").executes {
-                    try {
-                        ProcessBuilder()
-                            .command("playerctl", "position", "5-")
-                            .redirectErrorStream(true)
-                            .start()
-                    } catch (e: Exception) {
-                        LOGGER.error("Failed to play media", e)
-                    }
+                    backward()
                     1
                 }.then(ClientCommands.argument("amount", IntegerArgumentType.integer(0, Integer.MAX_VALUE)).executes {
-                    try {
-                        ProcessBuilder()
-                            .command(
-                                "playerctl",
-                                "position",
-                                IntegerArgumentType.getInteger(it, "action").toString() + "-"
-                            )
-                            .redirectErrorStream(true)
-                            .start()
-                    } catch (e: Exception) {
-                        LOGGER.error("Failed to play media", e)
-                    }
+                    backward(IntegerArgumentType.getInteger(it, "amount"))
                     1
                 }))
             )
         })
+    }
+
+    fun execute(vararg args: String) {
+        try {
+            ProcessBuilder()
+                .command("playerctl", *args)
+                .redirectErrorStream(true)
+                .start()
+        } catch (e: Exception) {
+            LOGGER.error("Failed to play media", e)
+        }
+    }
+
+    fun stop() {
+        execute("stop")
+    }
+
+    fun toggle() {
+        execute("play-pause")
+    }
+
+    fun next() {
+        execute("next")
+    }
+
+    fun previous() {
+        execute("previous")
+    }
+
+    fun pause() {
+        execute("pause")
+    }
+
+    fun play() {
+        execute("play")
+    }
+
+    fun shuffle(action: Boolean? = null) {
+        if (action == null) {
+            execute("shuffle", "toggle")
+        } else {
+            execute("shuffle", if (action) "on" else "off")
+        }
+    }
+
+    fun loop(action: LoopAction) {
+        execute("loop", action.name)
+    }
+
+    fun forward(amount: Int = 5) {
+        execute("position", "$amount+")
+    }
+
+    fun backward(amount: Int = 5) {
+        execute("position", "$amount-")
     }
 }
