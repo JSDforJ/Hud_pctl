@@ -5,8 +5,8 @@ import dev.ngspace.hudder.api.variableregistry.DataVariableRegistry
 import dev.ngspace.hudder.utils.HudFileUtils
 import dk.jsdfj.hud_pctl.Hud_pctl
 import dk.jsdfj.hud_pctl.Hud_pctl.Companion.LOGGER
-import dk.jsdfj.hud_pctl.PctlCommandManager
 import dk.jsdfj.hud_pctl.PlayerctlManager
+import dk.jsdfj.hud_pctl.commands.PctlCommandManager
 import net.fabricmc.api.ClientModInitializer
 import java.io.IOException
 import java.nio.file.Files
