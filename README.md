@@ -21,6 +21,8 @@ Playerctl variables for Hudder: No setup required! Works with Spotify, YT, brows
 - ``pctl_duration_raw``, number, in seconds
 - ``pctl_shuffle``, boolean
 - ``pctl_loop``, string, either "Playlist", "Track", or "None"
+- ``pctl_debug_input``, string, command used to call playerctl
+- ``pctl_debug_output``, string, raw output received from playerctl
 ##### All strings return N/A on error
 ##### All numbers return -1 on error
 

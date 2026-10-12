@@ -8,9 +8,9 @@
     "JSDfJ"
   ],
   "contact": {
-    "sources": "https://codeberg.org/JSDfJ/Hud_pctl",
-    "issues": "https://codeberg.org/JSDfJ/Hud_pctl/issues",
-    "homepage": "https://codeberg.org/JSDfJ/Hud_pctl/wiki",
+    "sources": "https://github.com/JSDforJ/Hud_pctl",
+    "issues": "https://github.com/JSDforJ/Hud_pctl/issues",
+    "homepage": "https://github.com/JSDforJ/Hud_pctl/wiki",
     "email": "me@jaysi.cc"
   },
   "license": "LGPL-3.0",
@@ -29,8 +29,8 @@
       "links": {
         "modmenu.buymeacoffee": "https://buymeacoffee.com/jsdfj",
         "modmenu.modrinth": "https://modrinth.com/mod/spotihud-playerctl",
-        "modmenu.github_releases": "https://codeberg.org/JSDfJ/Hud_pctl/releases",
-        "modmenu.wiki": "https://codeberg.org/JSDfJ/Hud_pctl/wiki"
+        "modmenu.github_releases": "https://github.com/JSDforJ/Hud_pctl/releases",
+        "modmenu.wiki": "https://github.com/JSDforJ/Hud_pctl/wiki"
       },
       "update_checker": true
     }
