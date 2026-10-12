@@ -1,0 +1,15 @@
+Debug Input: {pctl_debug_input}
+Debug Output: {pctl_debug_output}
+Player: {pctl_player}
+Title: {pctl_title}
+Artist: {pctl_artist}
+Album: {pctl_album}
+Status: {pctl_status}
+Position: {pctl_position}
+Duration: {pctl_duration}
+Volume: {pctl_volume}
+Volume Raw: {pctl_volume_raw}
+Position Raw: {pctl_position_raw}
+Duration Raw: {pctl_duration_raw}
+Shuffle: {pctl_shuffle}
+Loop: {pctl_loop}

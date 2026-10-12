@@ -110,18 +110,9 @@ class Hud_pctlClient : ClientModInitializer {
         createVars()
         PctlCommandManager.createCommands()
 
-        val dest = HudFileUtils.FOLDER.resolve("media.hud")
-        if (!Files.exists(dest)) {
-            try {
-                Files.copy(
-                    Hud_pctlClient::class.java.getResourceAsStream(Hud_pctl.ASSETS + "huds/media.hud")!!,
-                    dest
-                )
-            } catch (e: IOException) {
-                if (Hudder.IS_DEBUG) e.printStackTrace()
-                Hudder.error("Failed to generate default hud " + "media.hud")
-            }
-        }
+        moveHud("media.hud")
+        moveHud("media_complete.hud")
+        moveHud("media.js")
 
         ClientTickEvents.END_CLIENT_TICK.register({ client ->
             if (client.player == null) return@register
@@ -163,6 +154,21 @@ class Hud_pctlClient : ClientModInitializer {
         })
 
         LOGGER.info("Initialized Hud_pctl")
+    }
+
+    fun moveHud(hud: String) {
+        val dest = HudFileUtils.FOLDER.resolve(hud)
+        if (!Files.exists(dest)) {
+            try {
+                Files.copy(
+                    Hud_pctlClient::class.java.getResourceAsStream(Hud_pctl.ASSETS + "huds/" + hud)!!,
+                    dest
+                )
+            } catch (e: IOException) {
+                if (Hudder.IS_DEBUG) e.printStackTrace()
+                Hudder.error("Failed to generate default hud " + hud)
+            }
+        }
     }
 
     fun createVars() {
