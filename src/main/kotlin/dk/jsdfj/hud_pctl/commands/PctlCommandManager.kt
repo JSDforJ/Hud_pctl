@@ -4,9 +4,11 @@ import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.BoolArgumentType
 import com.mojang.brigadier.arguments.IntegerArgumentType
 import dk.jsdfj.hud_pctl.Hud_pctl.Companion.LOGGER
+import dk.jsdfj.hud_pctl.config.PctlConfig
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
 import net.fabricmc.fabric.api.client.command.v2.ClientCommands
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
+import net.minecraft.client.Minecraft
 import net.minecraft.commands.CommandBuildContext
 
 object PctlCommandManager {
@@ -55,7 +57,11 @@ object PctlCommandManager {
                 }.then(ClientCommands.argument("amount", IntegerArgumentType.integer(0, Integer.MAX_VALUE)).executes {
                     backward(IntegerArgumentType.getInteger(it, "amount"))
                     1
-                }))
+                })).then(ClientCommands.literal("config").executes {
+                    Minecraft.getInstance()
+                        .execute { Minecraft.getInstance().setScreenAndShow(PctlConfig.generateConfigScreen(null)) }
+                    1
+                })
             )
         })
     }
@@ -107,11 +113,11 @@ object PctlCommandManager {
         execute("loop", action.name)
     }
 
-    fun forward(amount: Int = 5) {
+    fun forward(amount: Int = PctlConfig.forwardAmount.get()) {
         execute("position", "$amount+")
     }
 
-    fun backward(amount: Int = 5) {
+    fun backward(amount: Int = PctlConfig.backwardAmount.get()) {
         execute("position", "$amount-")
     }
 }

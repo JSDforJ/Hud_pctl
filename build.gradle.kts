@@ -42,6 +42,9 @@ repositories {
             includeGroup("maven.modrinth")
         }
     }
+    maven("https://maven.isxander.dev/releases") {
+        name = "Xander Maven"
+    }
 }
 
 dependencies {
@@ -52,12 +55,15 @@ dependencies {
 
     implementation("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_version")}")
     implementation("maven.modrinth:hudder:${project.property("hudder_version")}")
+    implementation("dev.isxander:yet-another-config-lib:${project.property("yacl_version")}")
 }
 
 tasks.processResources {
     inputs.property("version", project.version)
     inputs.property("minecraft_version", project.property("minecraft_version"))
     inputs.property("loader_version", project.property("loader_version"))
+    inputs.property("hudder_version", project.property("hudder_version"))
+    inputs.property("yacl_version", project.property("yacl_version"))
     filteringCharset = "UTF-8"
 
     filesMatching("fabric.mod.json") {
@@ -65,6 +71,8 @@ tasks.processResources {
             "version" to project.version,
             "minecraft_version" to project.property("minecraft_version")!!,
             "loader_version" to project.property("loader_version")!!,
+            "hudder_version" to project.property("hudder_version")!!,
+            "yacl_version" to project.property("yacl_version")!!,
             "kotlin_loader_version" to project.property("kotlin_loader_version")!!
         )
     }

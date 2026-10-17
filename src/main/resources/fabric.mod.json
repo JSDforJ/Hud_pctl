@@ -40,6 +40,9 @@
     "fabric-language-kotlin": ">=${kotlin_loader_version}",
     "fabric-api": "*",
     "minecraft": ">=${minecraft_version}",
-    "hudder": ">=11.0.0"
+    "hudder": ">=${hudder_version}"
+  },
+  "recommends": {
+    "yet_another_config_lib_v3": ">=${yacl_version}"
   }
 }
