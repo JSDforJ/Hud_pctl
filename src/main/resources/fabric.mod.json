@@ -22,6 +22,9 @@
     ],
     "main": [
       "dk.jsdfj.hud_pctl.Hud_pctl"
+    ],
+    "modmenu": [
+      "dk.jsdfj.hud_pctl.ModMenuIntegration"
     ]
   },
   "custom": {
@@ -40,9 +43,10 @@
     "fabric-language-kotlin": ">=${kotlin_loader_version}",
     "fabric-api": "*",
     "minecraft": ">=${minecraft_version}",
-    "hudder": ">=${hudder_version}"
-  },
-  "recommends": {
+    "hudder": ">=${hudder_version}",
     "yet_another_config_lib_v3": ">=${yacl_version}"
+  },
+  "suggests": {
+    "modmenu": ">=${modmenu_version}"
   }
 }

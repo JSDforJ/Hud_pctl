@@ -45,6 +45,9 @@ repositories {
     maven("https://maven.isxander.dev/releases") {
         name = "Xander Maven"
     }
+    maven("https://maven.terraformersmc.com/") {
+        name = "Terraformers"
+    }
 }
 
 dependencies {
@@ -56,6 +59,7 @@ dependencies {
     implementation("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_version")}")
     implementation("maven.modrinth:hudder:${project.property("hudder_version")}")
     implementation("dev.isxander:yet-another-config-lib:${project.property("yacl_version")}")
+    implementation("com.terraformersmc:modmenu:${project.property("modmenu_version")}")
 }
 
 tasks.processResources {
@@ -64,6 +68,7 @@ tasks.processResources {
     inputs.property("loader_version", project.property("loader_version"))
     inputs.property("hudder_version", project.property("hudder_version"))
     inputs.property("yacl_version", project.property("yacl_version"))
+    inputs.property("modmenu_version", project.property("modmenu_version"))
     filteringCharset = "UTF-8"
 
     filesMatching("fabric.mod.json") {
@@ -73,6 +78,7 @@ tasks.processResources {
             "loader_version" to project.property("loader_version")!!,
             "hudder_version" to project.property("hudder_version")!!,
             "yacl_version" to project.property("yacl_version")!!,
+            "modmenu_version" to project.property("modmenu_version")!!,
             "kotlin_loader_version" to project.property("kotlin_loader_version")!!
         )
     }
