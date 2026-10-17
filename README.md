@@ -29,5 +29,5 @@ Playerctl variables for Hudder: No setup required! Works with Spotify, YT, brows
 ### Roadmap
 - Windows support
 - MPRIS support
-- Config
 - [CustomHud](https://modrinth.com/mod/customhud) support
+- Actions workflow
