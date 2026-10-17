@@ -9,5 +9,11 @@
   "key.hud_pctl.shuffle": "Toggle Shuffle",
   "key.hud_pctl.loop": "Cycle Loop",
   "key.hud_pctl.forward": "Forward",
-  "key.hud_pctl.backward": "Backward"
+  "key.hud_pctl.backward": "Backward",
+  "yacl3.config.hud_pctl.title": "SpotiHUD Playerctl Config",
+  "yacl3.config.hud_pctl.category.generalCategory": "General",
+  "yacl3.config.hud_pctl.category.generalCategory.root.option.forwardAmount": "Forward Amount",
+  "yacl3.config.hud_pctl.category.generalCategory.root.option.forwardAmount.description.1": "How many seconds to move forward at a time.",
+  "yacl3.config.hud_pctl.category.generalCategory.root.option.backwardAmount": "Backward Amount",
+  "yacl3.config.hud_pctl.category.generalCategory.root.option.backwardAmount.description.1": "How many seconds to move backward at a time."
 }
