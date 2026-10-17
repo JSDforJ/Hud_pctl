@@ -9,7 +9,9 @@ import dk.jsdfj.hud_pctl.Hud_pctl.Companion.LOGGER
 import dk.jsdfj.hud_pctl.PlayerctlManager
 import dk.jsdfj.hud_pctl.commands.LoopAction
 import dk.jsdfj.hud_pctl.commands.PctlCommandManager
+import dk.jsdfj.hud_pctl.config.PctlConfig
 import net.fabricmc.api.ClientModInitializer
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper
 import net.minecraft.client.KeyMapping
@@ -107,6 +109,7 @@ class Hud_pctlClient : ClientModInitializer {
     }
 
     override fun onInitializeClient() {
+        PctlConfig.loadFromFile()
         createVars()
         PctlCommandManager.createCommands()
 
@@ -153,6 +156,8 @@ class Hud_pctlClient : ClientModInitializer {
             }
         })
 
+        ClientLifecycleEvents.CLIENT_STOPPING.register { PctlConfig.saveToFile() }
+
         LOGGER.info("Initialized Hud_pctl")
     }
 
@@ -166,7 +171,7 @@ class Hud_pctlClient : ClientModInitializer {
                 )
             } catch (e: IOException) {
                 if (Hudder.IS_DEBUG) e.printStackTrace()
-                Hudder.error("Failed to generate default hud " + hud)
+                Hudder.error("Failed to generate default hud $hud")
             }
         }
     }
